@@ -10,7 +10,7 @@ void main() {
     printf("Enter the length of the number\n");
 
     do {
-        scanf_s("%d", &lenght);
+        scanf("%d", &lenght);
     } while (lenght <= 0 || lenght > 10);
     srand((unsigned int)time(0));
 
@@ -41,7 +41,7 @@ void main() {
         cow = 0; bull = 0;
         do {
             r = 0;
-            scanf_s("%d", &guess);
+            scanf("%d", &guess);
             for (i = 0; i < lenght; i++) { //check the length
                 if (((guess % 10) == 0) && ((guess / 10) == 0)) {
                     break;
