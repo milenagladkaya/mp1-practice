@@ -1,14 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <locale.h>
 #define N 10
 
 void main() {
     int mode, number, guess, k = 0, a = 1, b = 1000;
-    char moreorless;
-    setlocale(LC_ALL, "Russian");
-    printf("Выберете режим игры. Введите 1 или 2\n");
+	char moreorless;
+    printf("Choose game mode. Enter 1 or 2\n");
     do {
         scanf_s("%d", &mode);
     } while (mode != 1 && mode != 2);
@@ -18,28 +16,28 @@ void main() {
     case 1: {
         srand((unsigned int)time(0));
         number = rand() * b / RAND_MAX + a; 
-        printf("Число загадано. Оно находится в диапазоне от 1 до 1000. Попытайтесь его отгадать.\n");
+        printf("The number is made. It ranges from 1 to 1000. Try to guess it.\n");
         do {
             do {
                 scanf_s("%d", &guess);
             } while (guess < a || guess > b);
             if (number > guess) {
-                printf("Загаданное число больше\n");
+                printf("The number is bigger\n");
             }
             else if(number < guess) {
-                printf("Загаданное число меньше\n");
+                printf("The number is smaller\n");
             }
             k++;
         } while (number != guess);
-        printf("Вы угадали число с %d попыток\n", k);
+        printf("You guessed the number of %d attempts\n", k);
         break;
     }
     case 2: {
-        printf("Загадайте число от 1 до 1000\n");
+        printf("Make a number from 1 to 1000\n");
         do {
             scanf_s("%d", &number);
         } while (number < a || number > b);
-        printf("На попытки компьютера отгадать число вы можете вводить только '<' или '>'\n");
+        printf("At the computer's attempts to guess the number, you can enter only '<' or '>'\n");
         //k = 1;
         do{
                 guess = (b + a) / 2;
@@ -58,7 +56,7 @@ void main() {
                     b = guess;
                 } 
         } while (guess != number);
-            printf("Компьютер отгадал ваше число с %d попыток", k);
+            printf("The computer guessed your number from %d attempts.", k);
             break;
     }
             
