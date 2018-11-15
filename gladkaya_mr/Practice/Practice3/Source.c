@@ -8,7 +8,7 @@ void main() {
 	char moreorless;
     printf("Choose game mode. Enter 1 or 2\n");
     do {
-        scanf_s("%d", &mode);
+        scanf("%d", &mode);
     } while (mode != 1 && mode != 2);
     
     
@@ -19,7 +19,7 @@ void main() {
         printf("The number is made. It ranges from 1 to 1000. Try to guess it.\n");
         do {
             do {
-                scanf_s("%d", &guess);
+                scanf("%d", &guess);
             } while (guess < a || guess > b);
             if (number > guess) {
                 printf("The number is bigger\n");
@@ -35,7 +35,7 @@ void main() {
     case 2: {
         printf("Make a number from 1 to 1000\n");
         do {
-            scanf_s("%d", &number);
+            scanf("%d", &number);
         } while (number < a || number > b);
         printf("At the computer's attempts to guess the number, you can enter only '<' or '>'\n");
         //k = 1;
@@ -47,7 +47,7 @@ void main() {
                     break;
                 }
                 do {
-                    scanf_s("%c", &moreorless);
+                    scanf("%c", &moreorless);
                 } while ((moreorless != '<') && (moreorless != '>'));
                 if (moreorless == '>') {
                     a = guess;
