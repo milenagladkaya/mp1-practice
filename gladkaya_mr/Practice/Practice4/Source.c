@@ -22,7 +22,7 @@ void pricewithdiscount(int p[], int n, float np[], int k, int d[], int m) {
 }
 
 int barcodefunction(char barcode[][5], int n) {
-    char bc[30];//stock of digits if user enters bar code incorrectly
+    char bc[30];//it is stock of digits if user enters bar code incorrectly
     int i, k = 0, lenght = 0, j = 0;
     while (k == 0) {
         do {
@@ -53,7 +53,7 @@ int barcodefunction(char barcode[][5], int n) {
 void amountofgoods(int a[], int n, int b[], int k, int M) {
     int z, h;
     for (z = 0; z < M; z++) {
-        b[a[z]] = 1; //we put 1 in scanned goods
+        b[a[z]] = 1; //we put 1 into "scanned goods"
     }
     for (z = 1; z < M; z++) {
         for (h = 0; h < z; h++) {
@@ -88,7 +88,7 @@ void main() {
     char goods[N][N] = { "potato", "cucumber", "tomato", "pasta", "chicken", "beef", "pork", "water", "juice", "milk", "sausages", "dumplings", "chocolate", "tea", "coffee" };
     int price[N] = { 45, 150, 250, 130, 100, 270, 300, 35, 50, 55, 200, 200, 80, 120, 150 };
     float newprice[N];
-    int discount[N], b[N] = { 0 }/*element of the array - the number of the scanned goood with this index*/, a[100]/*array contains the indices of scanned goods*/;
+    int discount[N], b[N] = { 0 }/*element of array - a number of scanned goood with this index*/, a[100]/*array contains indices of scanned goods*/;
     discountfunction(discount, N);
     pricewithdiscount(price, N, newprice, N, discount, N);
     printf("1) Our shop has only 15 gooods.\n2) Every of them has bar code from 0001 to 0015.\n3) When you finish to scan bar code of goods, enter 0000.\n");
