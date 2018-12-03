@@ -50,23 +50,23 @@ int barcodefunction(char barcode[][5], int n) {
 }
 
 int gooddescriptionoutput(char barc[][5], int n, int a[], int M, char gd[][N], int prc[], int disc[], int nprc[] ) {
-	int bc, z = 0;
-	printf("- - - - -\nStart barcode scanning:\n");
-	do {
-		bc = barcodefunction(barc, n);
-		if (bc != 15) {
-			a[z] = bc;
-			z++;
-			M++;
-			printf("%s - %d ruble - discount %d%% - price with discount: %d ruble\n", gd[bc], prc[bc], disc[bc], nprc[bc]);
-		}
-		if (bc == 15 && z == 0) {
-			printf("You have to buy at least one good.\n");
-			bc = 16;
-		}
-	} while (bc != 15);
-	printf("The end of the barcode scanning.\n");
-	return (M);
+    int bc, z = 0;
+    printf("- - - - -\nStart barcode scanning:\n");
+    do {
+        bc = barcodefunction(barc, n);
+        if (bc != 15) {
+            a[z] = bc;
+            z++;
+            M++;
+            printf("%s - %d ruble - discount %d%% - price with discount: %d ruble\n", gd[bc], prc[bc], disc[bc], nprc[bc]);
+        }
+        if (bc == 15 && z == 0) {
+            printf("You have to buy at least one good.\n");
+            bc = 16;
+        }
+    } while (bc != 15);
+    printf("The end of the barcode scanning.\n");
+    return (M);
 }
 
 void amountofgoods(int a[], int b[], int M) {
@@ -108,7 +108,7 @@ void main() {
     discountfunction(discount, N);
     pricewithdiscount(price, newprice, discount, N);
     printf("1) Our shop has only 15 gooods.\n2) Every of them has bar code from 0001 to 0015.\n3) When you finish to scan bar code of goods, enter 0000.\n");
-	M = gooddescriptionoutput(barcode, N, a, M, goods, price, discount, newprice);
+    M = gooddescriptionoutput(barcode, N, a, M, goods, price, discount, newprice);
     amountofgoods(a, b, M);
     check(goods, newprice, b, price, N);
     system("pause");
