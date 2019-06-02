@@ -5,63 +5,83 @@
 #define N 10
 
 void main() {
-    int mode, number, guess, k = 0, a = 1, b = 1000;
-    char moreorless;
-    printf("Choose game mode. Enter 1 or 2\n");
+
+    int lenght, i, j, z, k, r, s, guess, temp, bull = 0, cow = 0;
+    int a[N], b[N];
+    printf("Enter the length of the number\n");
+
     do {
-        scanf("%d", &mode);
-    } while (mode != 1 && mode != 2);
+        scanf("%d", &lenght);
+    } while (lenght <= 0 || lenght > 10);
+    srand((unsigned int)time(0));
 
+    do {
+        z = 1;
+        k = 0;
+        for (i = 0; i < lenght; i++) { //form an array of non-repeating numbers from 0 to 9
+            a[i] = rand() % 10;
+        }
+        for (i = 1; i < lenght; i++) {
+            for (j = 0; j < i; j++) {
+                if (a[i] == a[j]) {
+                    k++;
+                }
+            }
+        }
+        if (a[0] == 0) { //the first element must not be 0
+            z = 0;
+        }
+    } while (z == 0 || k > 0);
+    /*printf("the number that the computer made = ");
+    for (i = 0; i < lenght; i++) {
+        printf("%d", a[i]);
+    }*/
+    printf("\nThe number is made. Try to guess it. It contains only non-repeating numbers.\n");
 
-    switch (mode) {
-    case 1: {
-        srand((unsigned int)time(0));
-        number = rand() * b / RAND_MAX + a;
-        printf("The number is made. It ranges from 1 to 1000. Try to guess it.\n");
+    do {
+        cow = 0; bull = 0;
         do {
-            do {
-                scanf("%d", &guess);
-            } while (guess < a || guess > b);
-            if (number > guess) {
-                printf("The number is bigger\n");
+            r = 0;
+            scanf("%d", &guess);
+            for (i = 0; i < lenght; i++) { //check the length
+                if (((guess % 10) == 0) && ((guess / 10) == 0)) {
+                    break;
+                }
+                b[i] = guess % 10;
+                guess /= 10;
+                r++;
             }
-            else if (number < guess) {
-                printf("The number is smaller\n");
+            s = 0;
+            for (i = 1; i < r; i++) { // check duplicate numbers
+                for (j = 0; j < i; j++) {
+                    if (b[i] == b[j]) {
+                        s++;
+                    }
+                }
             }
-            k++;
-        } while (number != guess);
-        printf("You guessed the number of %d attempts\n", k);
-        break;
-    }
-    case 2: {
-        printf("Make a number from 1 to 1000\n");
-        do {
-            scanf("%d", &number);
-        } while (number < a || number > b);
-        printf("At the computer's attempts to guess the number, you can enter only '<' or '>'\n");
-        //k = 1;
-        do {
-            guess = (b + a) / 2;
-            printf("%d\n", guess);
-            k++;
-            if (guess == number) {
-                break;
-            }
-            do {
-                scanf("%c", &moreorless);
-            } while ((moreorless != '<') && (moreorless != '>'));
-            if (moreorless == '>') {
-                a = guess;
-            }
-            else if (moreorless == '<') {
-                b = guess;
-            }
-        } while (guess != number);
-        printf("The computer guessed your number from %d attempts.", k);
-        break;
-    }
+        } while (lenght != r || guess != 0 || s != 0);
 
-    }
+        for (i = 0; i < lenght / 2; i++) {
+            temp = b[i];
+            b[i] = b[lenght - 1 - i];
+            b[lenght - 1 - i] = temp;
+        }
+
+        for (i = 0; i < lenght; i++) {
+            for (j = 0; j < lenght; j++) {
+                if (a[i] == b[j]) {
+                    cow++;
+                    if (i == j) {
+                        bull++;
+                    }
+                }
+            }
+        }
+        printf("number of cows  = %d\n", cow);
+        printf("number of bulls  = %d\n", bull);
+    } while (bull != lenght);
+    printf("You won! Congratulations!");
 
     system("pause");
 }
+
