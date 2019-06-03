@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -7,9 +7,9 @@
 class Error1 : std::exception
 {
 private:
-    const char* what() const;
-public:
     const std::string what_str = "Векторы разных размеров";
+public:
+    const char* what() const;
 };
 
 class  Error2 : std::exception

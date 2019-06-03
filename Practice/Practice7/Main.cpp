@@ -1,4 +1,4 @@
-#include "Vector.h"
+﻿#include "Vector.h"
 #include "Exception.h"
 #include <iostream>
 #include <locale.h>
@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    int d1 = 0, d2 = 0, c, b;
+    int d1 = 0, d2 = 0, c;
     setlocale(LC_ALL, "Russian");
 
     cout << "Введите размерность вектора v1: ";
@@ -17,7 +17,6 @@ int main()
     cout << "|v1| = ";
     v1.Length();
 
-newv2:
     cout << "Введите размерность вектора v2: ";
     Input(&d2);
     Vector v2(d2);
@@ -46,13 +45,9 @@ newv2:
                 v.Print();
                 cout << ")" << endl;
             }
-            catch (Error1)
+            catch (Error1 e)
             {
-                cout << "Размерности векторов различны. Если хотите изменить размерность ветора v2, введите 1." << endl;
-                cout << "Если нет, то любое другое число." << endl;
-                cin >> b;
-                if (b == 1)
-                    goto newv2;
+                cout << e.what();
             }
             break;
         }
@@ -65,13 +60,9 @@ newv2:
                 v.Print();
                 cout << ")" << endl;
             }
-            catch (Error1)
+            catch (Error1 e)
             {
-                cout << "Размерности векторов различны. Если хотите изменить размерность ветора v2, введите 1." << endl;
-                cout << "Если нет, то любое другое число." << endl;
-                cin >> b;
-                if (b == 1)
-                    goto newv2;
+                cout << e.what();
             }
             break;
         }
@@ -82,13 +73,9 @@ newv2:
                 double scal = v1 * v2;
                 cout << "scal = " << scal << endl;
             }
-            catch (Error1)
+            catch (Error1 e)
             {
-                cout << "Размерности векторов различны. Если хотите изменить размерность ветора v2, введите 1." << endl;
-                cout << "Если нет, то любое другое число." << endl;
-                cin >> b;
-                if (b == 1)
-                    goto newv2;
+                cout << e.what();
             }
             break;
         }
@@ -128,13 +115,9 @@ newv2:
                 v1.Print();
                 cout << ")" << endl;
             }
-            catch (Error1)
+            catch (Error1 e)
             {
-                cout << "Размерности векторов различны. Если хотите изменить размерность ветора v2, введите 1." << endl;
-                cout << "Если нет, то любое другое число." << endl;
-                cin >> b;
-                if (b == 1)
-                    goto newv2;
+                cout << e.what();
             }
             break;
         }
@@ -147,13 +130,9 @@ newv2:
                 v1.Print();
                 cout << ")" << endl;
             }
-            catch (Error1)
+            catch (Error1 e)
             {
-                cout << "Размерности векторов различны. Если хотите изменить размерность ветора v2, введите 1." << endl;
-                cout << "Если нет, то любое другое число." << endl;
-                cin >> b;
-                if (b == 1)
-                    goto newv2;
+                cout << e.what();
             }
             break;
         }
@@ -166,13 +145,9 @@ newv2:
                 v1.Print();
                 cout << ")" << endl;
             }
-            catch (Error1)
+            catch (Error1 e)
             {
-                cout << "Размерности векторов различны. Если хотите изменить размерность ветора v2, введите 1." << endl;
-                cout << "Если нет, то любое другое число." << endl;
-                cin >> b;
-                if (b == 1)
-                    goto newv2;
+                cout << e.what();
             }
             break;
         }
@@ -205,17 +180,15 @@ newv2:
         }
         case 13:
         {
-        newi:
             try {
                 int i;
                 cout << "Введите индекс: ";
                 cin >> i;
                 cout << "v1[" << i << "] = " << v1[i] << endl;
             }
-            catch (Error2)
+            catch (Error2 e)
             {
-                cout << "Нет такого индекса. Попробуйте ввести индекс ещё раз.";
-                goto newi;
+                cout << e.what();
             }
         }
         }
