@@ -1,4 +1,4 @@
-#include "Matrix.h"
+﻿#include "Matrix.h"
 #include "Exception.h"
 #include <iostream>
 #include <locale.h>
@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    int x1, y1, x2, y2, a, b, check;
+    int x1, y1, x2, y2, a, b;
 
 
     cout << "Введите размер матрицы A:" << endl;
@@ -17,7 +17,6 @@ int main()
     cout << "Матрица A имеет вид:" << endl;
     A.Print();
 
-newB:
     cout << "\n\nВведите размер матрицы B:" << endl;
     Input(&x2, &y2);
     Matrix B(x2, y2);
@@ -37,9 +36,9 @@ newB:
                 while (cin.get() != '\n');
                 cout << "Вы ввели символ. Введите число." << endl;
             };
-            if ((n < 1) || (n > 11))
+            if ((n < 1) || (n > 12))
                 cout << "Операции с таким номером нет. Попробуйте ввести ещё раз." << endl;
-        } while ((n < 1) || (n > 11));
+        } while ((n < 1) || (n > 12));
         double dig;
         switch (n)
         {
@@ -52,12 +51,9 @@ newB:
                 cout << "\nC = A + B :";
                 C.Print();
             }
-            catch (Error1)
+            catch (Error1 e)
             {
-                cout << "Размеры матриц не совпадают. Если хотите изменить размер матрицы B введите 1, если нет, любое другое число." << endl;
-                cin >> b;
-                if (b == 1)
-                    goto newB;
+                cout << e.what();
             }
             break;
         }
@@ -69,12 +65,9 @@ newB:
                 cout << "\nC = A - B :";
                 C.Print();
             }
-            catch (Error1)
+            catch (Error1 e)
             {
-                cout << "Размеры матриц не совпадают. Если хотите изменить размер матрицы B введите 1, если нет, любое другое число." << endl;
-                cin >> b;
-                if (b == 1)
-                    goto newB;
+                cout << e.what();
             }
             break;
         }
@@ -86,13 +79,9 @@ newB:
                 cout << "\nC = A * B :";
                 D.Print();
             }
-            catch (Error2)
+            catch (Error2 e)
             {
-                cout << "Количество столбцов A не равно количеству строк B." << endl;
-                cout << "Если хотите изменить размер матрицы B введите 1, если нет, любое другое число." << endl;
-                cin >> b;
-                if (b == 1)
-                    goto newB;
+                cout << e.what();
             }
             break;
         }
@@ -128,12 +117,9 @@ newB:
                 cout << "\nA += B :";
                 A.Print();
             }
-            catch (Error1)
+            catch (Error1 e)
             {
-                cout << "Размеры матриц не совпадают. Если хотите изменить размер матрицы B введите 1, если нет, любое другое число." << endl;
-                cin >> b;
-                if (b == 1)
-                    goto newB;
+                cout << e.what();
             }
             break;
         }
@@ -145,12 +131,9 @@ newB:
                 cout << "\nA -= B :";
                 A.Print();
             }
-            catch (Error1)
+            catch (Error1 e)
             {
-                cout << "Размеры матриц не совпадают. Если хотите изменить размер матрицы B введите 1, если нет, любое другое число." << endl;
-                cin >> b;
-                if (b == 1)
-                    goto newB;
+            cout << e.what();
             }
             break;
         }
@@ -178,6 +161,24 @@ newB:
             A.Print();
             break;
         }
+         case 12:
+            {
+            try
+            {
+                int i, j;
+                cout << "Введите номер строки матрицы A: ";
+                cin >> i;
+                cout << "Введите индекс элемента этой строки: ";
+                cin >> j;
+                if ((j < 0) || (j > x1))
+                throw Error3();
+                cout << "A[" << i << "][" << j << "] = " << A[i][j];
+            }
+            catch (Error3 e)
+            {
+                cout << e.what();
+            }
+            }
         }
         cout << "\nЕсли вы хотите сделать ещё какие-то действия с матрицами, введите 1" << endl;
         cout << "Если нет, любое другое число." << endl;

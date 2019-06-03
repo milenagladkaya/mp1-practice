@@ -25,7 +25,7 @@ public:
     Matrix& operator+= (double);
     Matrix& operator-= (double);
     Matrix& operator*= (double);
-    double* operator[] (int);// строка
+    double* operator[] (int);
 
     void Fill();
     void Print();

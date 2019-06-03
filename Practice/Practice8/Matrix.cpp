@@ -227,7 +227,7 @@ void Menu()
     cout << "3 - C = A * B" << "       " << "9 - A += dig" << endl;
     cout << "4 - C = A + dig" << "     " << "10 - A -= dig" << endl;
     cout << "5 - C = A - dig" << "     " << "11 - A *= dig" << endl;
-    cout << "6 - C = A * dig" << endl;
+	cout << "6 - C = A * dig" << "     " << "12 - A[i][j] - где i-номер строки, а j-индекс элемента этой строки" << endl;
 }
 double Digital()
 {
